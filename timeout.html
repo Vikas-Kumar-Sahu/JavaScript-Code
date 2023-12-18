@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>setTimeout</title>
+</head>
+<body style="text-align: center; margin-top: 15%;">
+    <h1>SetTimeout Function</h1>
+    <button id="Start" style="font-size: x-large;">Start</button>
+    <button id="Stop" style="font-size: x-large;">Stop</button>
+    <h3 id="printer"></h3>
+    <button id="Reset" style="font-size: x-large;">Reset</button>
+
+    <script>
+        let counter = 0;
+        let intervalId;
+
+        const btn1 = document.getElementById('Start');
+        const btn2 = document.getElementById('Stop');
+        const btn3 = document.getElementById('Reset');
+
+        function startCounter(){
+            intervalId = setInterval(function(){
+            counter++;
+            document.getElementById('printer').innerHTML = `There are ${counter} person in party.`;
+            },1000);
+        }
+
+        btn1.addEventListener('click', function(){
+            startCounter(intervalId);
+        });
+
+        btn2.addEventListener('click', function(){
+            clearInterval(intervalId);
+            intervalId = null;
+        });
+
+        btn3.addEventListener('click', function(){
+            document.getElementById('printer').innerHTML = `This party is over!`;
+            clearInterval(intervalId);
+            intervalId = null;
+            counter = 0;
+        });
+        
+    </script>
+</body>
+</html>
+
+<!-------------------------------------   challenge is done   --------------------------------->

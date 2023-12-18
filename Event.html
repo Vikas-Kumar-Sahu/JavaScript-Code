@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Handling Example</title>
+    <style>
+        button {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<button id="clickBtn">Click Me</button>
+<button id="hoverBtn">Hover Me</button>
+<ul id="listContainer">
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+</ul>
+
+<script>
+    // Traditional Event Handling
+    function handleClick() {
+        alert('Button Clicked!');
+    }
+
+    // Event Listener
+    function handleHover() {
+        alert('Button Hovered!');
+    }
+
+    const clickButton = document.getElementById('clickBtn');
+    clickButton.onclick = handleClick;
+
+    const hoverButton = document.getElementById('hoverBtn');
+    hoverButton.addEventListener('mouseover', handleHover);
+
+    // Event Delegation
+    const listContainer = document.getElementById('listContainer');
+    listContainer.addEventListener('click', function(event) {
+        if (event.target.tagName === 'LI') {
+            alert(`Clicked on ${event.target.textContent}`);
+        }
+    });
+
+    // Remove Event Listener
+    function removeClickHandler() {
+        alert('Click event removed!');
+        clickButton.removeEventListener('click', handleClick);
+    }
+
+    const removeHandlerButton = document.createElement('button');
+    removeHandlerButton.textContent = 'Remove Click Handler';
+    removeHandlerButton.onclick = removeClickHandler;
+    document.body.appendChild(removeHandlerButton);
+</script>
+
+</body>
+</html>
+
+<!--
+    In this code:
+
+    Traditional event handling is demonstrated using the onclick attribute.
+
+    Event listeners are used with the addEventListener method for a mouseover event.
+
+    Event delegation is implemented to handle clicks on list items within a container.
+
+    A button is dynamically created to remove the click event handler.
+    
+    This code provides a comprehensive example of various ways to handle events in JavaScript within the context of an HTML document.
+-->
